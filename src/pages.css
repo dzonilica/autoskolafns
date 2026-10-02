@@ -4,6 +4,11 @@
 .desktop-nav a[aria-current="page"]::after { transform: scaleX(1); }
 .mobile-nav a[aria-current="page"] { color: var(--accent-text); font-weight: 750; }
 .mobile-nav { max-height: calc(100dvh - 70px); overflow-y: auto; }
+/* Underline draws in from the left and leaves to the right. */
+.desktop-nav a::after { transform-origin: right; }
+.desktop-nav a:hover::after { transform-origin: left; }
+.menu-toggle .menu-icon { grid-area: 1 / 1; display: grid; }
+.menu-backdrop { display: none; }
 .breadcrumb { display: flex; align-items: center; gap: 14px; padding-block: 28px 0; font-size: 11px; color: var(--muted); }
 .breadcrumb a { padding-block: 8px; }
 .breadcrumb a:hover { color: var(--accent-text); text-decoration: underline; }
@@ -176,6 +181,11 @@
   .contact-page .form-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 767px) {
+  /* The open menu overlays the page under the 70px header instead of pushing it down. */
+  .mobile-nav { position: absolute; top: 100%; left: 0; right: 0; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .mobile-nav a svg { color: var(--accent); transition: transform .25s; }
+  .mobile-nav a:hover svg { transform: translate(3px, -3px); }
+  .menu-backdrop { display: block; position: fixed; inset: 70px 0 0; background: rgb(28 26 24 / .32); }
   .breadcrumb { padding-top: 18px; font-size: 10px; gap: 12px; }
   .page-hero-copy h1 { font-size: clamp(42px, 8.8vw, 64px); }
   .page-hero-copy > p:not(.eyebrow) { font-size: 13px; margin-top: 22px; }

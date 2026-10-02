@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { MotionConfig, useReducedMotion } from 'motion/react';
+import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'motion/react';
 import { ArrowUpRight, ArrowRight, ArrowDown, Phone, MapPin, EnvelopeSimple, InstagramLogo, Plus, X, List, Check, SteeringWheel, ShieldCheck, UserFocus } from '@phosphor-icons/react';
 import { ParallaxImage, Reveal, Breadcrumb } from './ui';
 import { AboutPage, PricingPage, ContactLocation } from './pages';
@@ -20,9 +20,19 @@ function Brand({ footer = false }) {
   return <a className={`brand ${footer ? 'brand-footer' : ''}`} href="/" title="FNS, početna stranica"><img className="brand-logo" src="/brand/fns-logo.webp" alt="FNS" width="355" height="320" /><span className="brand-description">AUTO ŠKOLA<br />NOVI SAD</span></a>;
 }
 
+const ease = [0.16, 1, 0.3, 1];
+// The panel wipes down from under the header and staggers its links in; closing wipes it back up in one quick move.
+const menuPanel = {
+  closed: { clipPath: 'inset(0 0 100% 0)', transition: { duration: 0.38, ease: [0.65, 0, 0.35, 1] } },
+  open: { clipPath: 'inset(0 0 0% 0)', transition: { duration: 0.55, ease, staggerChildren: 0.05, delayChildren: 0.08 } },
+};
+const menuPanelReduced = { closed: { opacity: 0, transition: { duration: 0.2 } }, open: { opacity: 1, transition: { duration: 0.2 } } };
+const menuLink = { closed: { opacity: 0, y: 18, transition: { duration: 0.3 } }, open: { opacity: 1, y: 0, transition: { duration: 0.5, ease } } };
+
 function Header() {
   const [open, setOpen] = useState(false);
   const toggle = useRef(null);
+  const reduced = useReducedMotion();
   useEffect(() => {
     if (!open) return;
     const close = (e) => { if (e.key === 'Escape') { setOpen(false); toggle.current?.focus(); } };
@@ -34,9 +44,18 @@ function Header() {
       <Brand />
       <nav className="desktop-nav" aria-label="Glavna navigacija">{navItems.map(([href, label]) => <a key={href} href={href} aria-current={href === `/${pageName}/` ? 'page' : undefined}>{label}</a>)}</nav>
       <a className="button button-small header-cta" href="/kontakt/#upit">Započni obuku <ArrowUpRight size={17} /></a>
-      <button ref={toggle} className="menu-toggle icon-button" aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? 'Zatvori meni' : 'Otvori meni'} onClick={() => setOpen(!open)}>{open ? <X size={26} /> : <List size={26} />}</button>
+      <button ref={toggle} className="menu-toggle icon-button" aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? 'Zatvori meni' : 'Otvori meni'} onClick={() => setOpen(!open)}>
+        <AnimatePresence initial={false}>
+          <motion.span key={open ? 'close' : 'open'} className="menu-icon" initial={{ opacity: 0, rotate: -90, scale: 0.6 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={{ opacity: 0, rotate: 90, scale: 0.6 }} transition={{ duration: 0.3, ease }}>{open ? <X size={26} /> : <List size={26} />}</motion.span>
+        </AnimatePresence>
+      </button>
     </div>
-    {open && <nav id="mobile-nav" className="mobile-nav" aria-label="Mobilna navigacija">{navItems.map(([href, label]) => <a key={href} href={href} aria-current={href === `/${pageName}/` ? 'page' : undefined} onClick={() => setOpen(false)}>{label}<ArrowUpRight size={22} /></a>)}</nav>}
+    <AnimatePresence>
+      {open && <motion.div key="backdrop" className="menu-backdrop" aria-hidden="true" onClick={() => setOpen(false)} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} />}
+      {open && <motion.nav key="nav" id="mobile-nav" className="mobile-nav" aria-label="Mobilna navigacija" variants={reduced ? menuPanelReduced : menuPanel} initial="closed" animate="open" exit="closed">
+        {navItems.map(([href, label]) => <motion.a key={href} variants={menuLink} href={href} aria-current={href === `/${pageName}/` ? 'page' : undefined} onClick={() => setOpen(false)}>{label}<ArrowUpRight size={22} /></motion.a>)}
+      </motion.nav>}
+    </AnimatePresence>
   </header>;
 }
 

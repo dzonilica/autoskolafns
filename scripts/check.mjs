@@ -66,6 +66,8 @@ try {
       await page.getByRole('button', { name: 'Otvori meni' }).click();
       check('Mobile menu opens', await page.getByRole('navigation', { name: 'Mobilna navigacija' }).isVisible());
       await page.getByRole('navigation', { name: 'Mobilna navigacija' }).getByRole('link', { name: 'Obuka', exact: true }).click();
+      // The menu animates out before it unmounts.
+      await page.getByRole('navigation', { name: 'Mobilna navigacija' }).waitFor({ state: 'detached', timeout: 2000 });
       check('Mobile menu closes after navigation', await page.getByRole('navigation', { name: 'Mobilna navigacija' }).count() === 0);
       await page.screenshot({ path: 'artifacts/mobile-full.png', fullPage: true });
     }
