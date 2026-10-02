@@ -1,0 +1,17 @@
+/* Intro loader, inlined into every page by vite.config.js so it paints before the app bundle.
+   Colors repeat the style.css tokens (paper, line, accent) because this runs before that file loads. */
+.fns-loader{position:fixed;inset:0;z-index:40;display:grid;place-items:center;background:#fbfaf8;transition:transform .85s cubic-bezier(.76,0,.24,1) .2s,visibility 0s 1.05s}
+.fns-loader:after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:#e85d10;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.65,0,.35,1)}
+.fns-loader-inner{display:flex;flex-direction:column;align-items:center;gap:34px;transition:opacity .35s,transform .35s}
+.fns-loader img{display:block;width:auto;height:120px;animation:fns-loader-in .8s cubic-bezier(.16,1,.3,1) both,fns-loader-float 2.4s ease-in-out .8s infinite}
+.fns-loader-bar{position:relative;width:132px;height:2px;border-radius:2px;background:#e3dfd9;overflow:hidden}
+.fns-loader-bar:after{content:'';position:absolute;top:0;bottom:0;left:0;width:40%;border-radius:inherit;background:#e85d10;animation:fns-loader-sweep 1.15s cubic-bezier(.65,0,.35,1) infinite}
+.fns-ready .fns-loader{transform:translateY(-100%);visibility:hidden;pointer-events:none}
+.fns-ready .fns-loader:after{transform:scaleX(1)}
+.fns-ready .fns-loader-inner{opacity:0;transform:translateY(-14px)}
+.fns-skip .fns-loader{display:none}
+@keyframes fns-loader-in{from{opacity:0;transform:translateY(18px) scale(.96)}}
+@keyframes fns-loader-float{50%{transform:translateY(-6px)}}
+@keyframes fns-loader-sweep{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
+@media(max-width:767px){.fns-loader img{height:96px}.fns-loader-inner{gap:28px}}
+@media(prefers-reduced-motion:reduce){.fns-loader img,.fns-loader-bar:after{animation:none}.fns-loader-bar:after{width:100%}.fns-loader,.fns-loader-inner{transition:opacity .25s,visibility 0s .25s}.fns-ready .fns-loader{transform:none;opacity:0}.fns-loader:after{display:none}}
