@@ -13,7 +13,8 @@ const check = (name, value) => { assert.ok(value, name); results.push(name); };
 try {
   await page.goto(url, { waitUntil: 'networkidle' });
   await page.locator('h1').waitFor();
-  await page.waitForTimeout(900);
+  await page.locator('#fns-loader').waitFor({ state: 'detached', timeout: 8000 });
+  await page.waitForFunction(() => Number(getComputedStyle(document.querySelector('.hero-aside')).opacity) >= .99);
   await page.screenshot({ path: 'artifacts/desktop.png' });
   check('Serbian document language', await page.locator('html').getAttribute('lang') === 'sr-Latn');
   check('Light theme', await page.evaluate(() => getComputedStyle(document.documentElement).colorScheme) === 'light');
@@ -24,6 +25,13 @@ try {
   await page.waitForTimeout(180);
   const after = await page.locator('.hero-visual img').evaluate(img => getComputedStyle(img).transform);
   check('Parallax responds to scroll', before !== after);
+  await page.getByRole('button', { name: 'A kategorija Obuka za motocikl', exact: true }).click();
+  check('Training selector switches category and image', await page.locator('#training-toggle-A').getAttribute('aria-expanded') === 'true' && await page.locator('.training-photo img').last().getAttribute('src') === '/images/motocikl-1600.webp');
+  await page.locator('#training-toggle-B').focus();
+  await page.keyboard.press('Enter');
+  check('Training selector works with keyboard and keeps one panel visible', await page.locator('#training-toggle-B').getAttribute('aria-expanded') === 'true' && await page.locator('.training-panel:visible').count() === 1);
+  await page.locator('#training-toggle-A').focus();
+  await page.keyboard.press('Enter');
   await page.getByRole('button', { name: 'Detalji A kategorije', exact: true }).click();
   await page.getByRole('dialog').waitFor({ state: 'visible' });
   check('Category dialog opens', await page.getByRole('dialog').isVisible());
@@ -47,7 +55,7 @@ try {
   const broken = await page.locator('img').evaluateAll(imgs => imgs.filter(img => !img.complete || !img.naturalWidth).map(img => img.src));
   check('All photos load', broken.length === 0);
   await page.locator('form').evaluate(form => form.reset());
-  await page.getByText('B kategorija', { exact: true }).click();
+  await page.getByRole('radio', { name: 'B kategorija', exact: true }).check();
   await page.locator('details').evaluateAll(items => items.forEach(item => item.open = false));
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
   await page.waitForTimeout(800);

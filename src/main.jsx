@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'motion/react';
-import { ArrowUpRight, ArrowRight, ArrowDown, Phone, MapPin, EnvelopeSimple, InstagramLogo, Plus, X, List, Check, SteeringWheel, ShieldCheck, UserFocus } from '@phosphor-icons/react';
+import { AnimatePresence, MotionConfig, motion, useMotionValueEvent, useReducedMotion, useScroll } from 'motion/react';
+import { ArrowUpRight, ArrowRight, Phone, MapPin, EnvelopeSimple, InstagramLogo, Plus, Minus, X, List, Check, SteeringWheel, ShieldCheck, UserFocus } from '@phosphor-icons/react';
 import { ParallaxImage, Reveal, Breadcrumb } from './ui';
 import { AboutPage, PricingPage, ContactLocation } from './pages';
 import { phone, email, instagramUrl, initialCategory, categoryKeys, chosenPackage, formatPrice, packageTotal, unitPrices } from './site-data';
 import './style.css';
 import './pages.css';
+import './premium.css';
 
 const IMG = '/images/';
 const pageName = window.location.pathname.replace(/^\/+|\/+$/g, '').replace(/\/index\.html$/, '') || 'pocetna';
@@ -31,15 +32,18 @@ const menuLink = { closed: { opacity: 0, y: 18, transition: { duration: 0.3 } },
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(() => window.scrollY > 0);
+  const { scrollY } = useScroll();
   const toggle = useRef(null);
   const reduced = useReducedMotion();
+  useMotionValueEvent(scrollY, 'change', y => setScrolled(y > 0));
   useEffect(() => {
     if (!open) return;
     const close = (e) => { if (e.key === 'Escape') { setOpen(false); toggle.current?.focus(); } };
     window.addEventListener('keydown', close);
     return () => window.removeEventListener('keydown', close);
   }, [open]);
-  return <header className="site-header">
+  return <header className={`site-header${scrolled ? ' is-scrolled' : ''}${open ? ' is-menu-open' : ''}`}>
     <div className="header-inner container">
       <Brand />
       <nav className="desktop-nav" aria-label="Glavna navigacija">{navItems.map(([href, label]) => <a key={href} href={href} aria-current={href === `/${pageName}/` ? 'page' : undefined}>{label}</a>)}</nav>
@@ -65,30 +69,34 @@ function Hero() {
       <Reveal><p className="eyebrow">AUTO ŠKOLA FNS / NOVI SAD</p><h1 id="hero-title">Tvoj put.<br /><span>Tvoja sloboda.</span></h1></Reveal>
       <Reveal className="hero-aside" delay={0.12}><p>Dobra vožnja počinje dobrim osećajem. Stekni znanje i sigurnost za svaki sledeći kilometar.</p><a className="button" href="#kontakt">Započni obuku <ArrowUpRight size={20} /></a></Reveal>
     </div>
-    <div className="hero-visual"><ParallaxImage name="hero" alt="Beli automobil za obuku na mirnoj ulici sa drvoredom" priority position="center 58%" /></div>
-    <div className="hero-bottom"><span>Sigurnost se uči. Sloboda dolazi.</span><a href="#obuka">Istraži A i B kategoriju <ArrowDown size={17} /></a></div>
+    <div className="hero-visual"><ParallaxImage name="hero" alt="Beli automobil za obuku na mirnoj ulici sa drvoredom" priority position="center 58%" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) calc(100vw - 64px), (max-width: 1336px) calc(100vw - 96px), 1240px" /></div>
   </section>;
 }
 
 function About() {
   return <section id="o-nama" className="about container section-space" aria-labelledby="about-title">
-    <Reveal className="about-heading"><h2 id="about-title">Mnogo više od<br />položenog ispita.</h2></Reveal>
     <div className="about-grid">
-      <Reveal className="about-copy"><p className="large-copy">Prvi čas se pamti.<br />Dobra obuka ostaje.</p><p>U FNS-u učimo zajedno, strpljivo i korak po korak. Da za volan sedneš sa znanjem, sigurnošću i poverenjem u sebe.</p><div className="experience"><span>15<span>+</span></span><p>godina iskustva<br />naših instruktora</p></div><a className="text-link" href="/o-nama/">Upoznaj naš pristup <ArrowUpRight size={20} /></a></Reveal>
-      <Reveal className="about-photo" delay={0.1}><ParallaxImage name="ucionica" alt="Teorijska nastava i objašnjavanje saobraćajnih situacija" position="60% center" /></Reveal>
-      <Reveal className="about-note" delay={0.2}><div className="about-note-image"><ParallaxImage name="prostor" alt="Učionica auto škole FNS sa računarima za kandidate" /></div><p>Razumevanje na času.<br />Samopouzdanje na putu.</p><SteeringWheel size={38} weight="light" /></Reveal>
+      <Reveal className="about-copy"><h2 id="about-title">Mnogo više od<br />položenog ispita.</h2><p className="large-copy">Prvi čas se pamti.<br />Dobra obuka ostaje.</p><p>U FNS-u učimo zajedno, strpljivo i korak po korak. Da za volan sedneš sa znanjem, sigurnošću i poverenjem u sebe.</p><div className="experience"><span>15<span>+</span></span><p>godina iskustva<br />naših instruktora</p></div><a className="text-link" href="/o-nama/">Upoznaj naš pristup <ArrowUpRight size={20} /></a></Reveal>
+      <div className="about-gallery"><Reveal className="about-photo" delay={0.1}><ParallaxImage name="ucionica" alt="Teorijska nastava i objašnjavanje saobraćajnih situacija" position="60% center" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1100px) 50vw, 440px" /></Reveal>
+      <Reveal className="about-note" delay={0.2}><div className="about-note-image"><ParallaxImage name="prostor" alt="Učionica auto škole FNS sa računarima za kandidate" sizes="(max-width: 767px) 35vw, 210px" /></div><p>Razumevanje na času.<br />Samopouzdanje na putu.</p></Reveal></div>
     </div>
     <div className="principles"><div><UserFocus size={24} weight="light" /><span>Pristup prilagođen tebi</span></div><div><SteeringWheel size={24} weight="light" /><span>Znanje za stvarnu vožnju</span></div><div><ShieldCheck size={24} weight="light" /><span>Sigurnost na prvom mestu</span></div></div>
   </section>;
 }
 
 function Training({ onDetails }) {
+  const [active, setActive] = useState('B');
+  const reduced = useReducedMotion();
+  const selected = categories[active];
   return <section id="obuka" className="training section-space" aria-labelledby="training-title"><div className="container">
     <Reveal className="section-heading"><p className="eyebrow">IZABERI SVOJ PRAVAC</p><h2 id="training-title">Dva puta. Isti osećaj slobode.</h2><p>Automobil ili motocikl. Pronađi obuku za svoj sledeći korak.</p></Reveal>
-    <div className="training-grid">{Object.entries(categories).map(([key, data], index) => <Reveal key={key} className={`training-item training-${key}`} delay={index * 0.12}>
-      <button className="image-button" onClick={() => onDetails(key)} aria-label={`Saznaj više o obuci za ${key} kategoriju`}><ParallaxImage name={data.image} alt={data.alt} /></button>
-      <div className="training-caption"><span className="category-letter" aria-hidden="true">{key}</span><div><p className="category-label">{key} KATEGORIJA</p><h3>{data.title}</h3><p>{data.label}</p></div><button className="circle-button" onClick={() => onDetails(key)} aria-label={`Detalji ${key} kategorije`}><ArrowUpRight size={25} weight="light" /></button></div>
-    </Reveal>)}</div>
+    <div className="training-showcase">
+      <Reveal className="training-selector">{Object.entries(categories).map(([key, data]) => <div key={key} className={`training-choice ${active === key ? 'is-active' : ''}`}>
+        <h3><button id={`training-toggle-${key}`} className="training-toggle" aria-expanded={active === key} aria-controls={`training-panel-${key}`} onClick={() => setActive(key)}><span><span className="training-category">{key} kategorija</span><span className="training-name">{data.label}</span></span>{active === key ? <Minus size={21} weight="light" aria-hidden="true" /> : <Plus size={21} weight="light" aria-hidden="true" />}</button></h3>
+        <div id={`training-panel-${key}`} className="training-panel" role="region" aria-labelledby={`training-toggle-${key}`} hidden={active !== key}><p>{data.description}</p><ul>{data.items.map(item => <li key={item}><Check size={16} aria-hidden="true" />{item}</li>)}</ul><button className="text-link" onClick={() => onDetails(key)} aria-label={`Detalji ${key} kategorije`}>Više o {key} kategoriji <ArrowUpRight size={19} /></button></div>
+      </div>)}<a className="training-prices text-link" href="/cenovnik/">Pogledaj cene obuke <ArrowUpRight size={18} /></a></Reveal>
+      <Reveal className="training-media" delay={0.1}><figure><div className="training-photo"><AnimatePresence initial={false} mode="sync"><motion.div className="training-photo-layer" key={active} initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduced ? 0 : 0.35 }}><ParallaxImage name={selected.image} alt={selected.alt} sizes="(max-width: 767px) 100vw, 55vw" /></motion.div></AnimatePresence></div><figcaption aria-live="polite">{selected.title}</figcaption></figure></Reveal>
+    </div>
   </div></section>;
 }
 

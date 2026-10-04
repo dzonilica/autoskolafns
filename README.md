@@ -1,6 +1,6 @@
 # Auto škola FNS
 
-Premium sajt sa svetlom temom, logom škole, narandžastim akcentom, uvodnim loaderom, lokalno učitanim Manrope fontom i parallax fotografijama. React + Vite + Motion, sa izvornim CSS stilovima.
+Premium sajt sa svetlom temom, logom škole, diskretnim narandžastim akcentom, uvodnim loaderom, lokalno učitanim DM Sans fontom i parallax fotografijama. React + Vite + Motion, sa izvornim CSS stilovima. Vizuelna dorada prati mirnu kompoziciju, tipografiju i fotografski prikaz iz korisnikove Hausmajstor reference.
 
 ## Pokretanje
 
@@ -34,10 +34,12 @@ Na [vercel.com/new](https://vercel.com/new) uvesti GitHub repozitorijum `dzonili
 - Cenovnik: jedinične cene (čas teorije, čas vožnje, polaganje), izbor B/A1/A2/A kategorije mišem ili tastaturom, paketi prema dozvoli koju kandidat već ima, uslovi i dokumenti po kategoriji, plaćanje, postupak obuke i česta pitanja. Dugme „Upiši se“ prenosi kategoriju i paket u kontakt formu. Jedinične cene su u `src/site-data.js` (`unitPrices`, u RSD); svi iznosi paketa računaju se iz njih i broja časova u `priceCategories`.
 - Kontakt: telefon, e-mail, adresa, radno vreme i forma. Mapa se učitava tek nakon klika na „Prikaži mapu“; direktan Google Maps link je uvek dostupan. Link `/kontakt/?kategorija=A&paket=4#upit` bira A kategoriju, u poruku upisuje izabrani paket sa cenom i fokusira ime.
 - Logo škole u headeru i footeru, kao favicon i ikonica za iOS početni ekran.
+- Uvodna kompozicija sa širokom fotografijom automobila i jasnom tipografskom hijerarhijom. Sekcija predstavljanja spaja tekst sa asimetričnom galerijom; na telefonu se prikazuje u jednoj koloni. Navigacija ima diskretno zamućenje uz punu pozadinu kada korisnik traži smanjenu providnost.
 - Uvodni loader sa logom pri prvom otvaranju sajta u sesiji pregledača. Ostale stranice iz iste sesije otvaraju se bez njega; za ponovni prikaz otvoriti sajt u novom tabu. Loader se ubacuje u sve HTML stranice preko `vite.config.js` iz `src/loader/` i prikazuje se pre učitavanja aplikacije. Animacije sekcija kreću kada se loader podigne, a uz `prefers-reduced-motion` loader samo kratko nestaje.
 - Navigacija na desktopu i mobilni meni sa zatvaranjem na Escape.
 - Parallax fotografije i diskretno pojavljivanje sekcija. Podešavanje `prefers-reduced-motion` isključuje animacije.
 - Detalji A i B kategorije u pristupačnom izvornom HTML dijalogu.
+- Sekcija obuke sa izborom A/B kategorije: opis levo i velika fotografija desno, koja prati izbor. Dugmad rade tastaturom, imaju `aria-expanded` i povezana su sa panelima. Na telefonu se sadržaj prikazuje u jednoj koloni.
 - Prenos izabrane kategorije u kontakt formu, sa fokusom na prvo polje.
 - FAQ sa izvornim HTML `details` elementima.
 - Upit sa obaveznim imenom i e-mail adresom. Korisnik priprema poruku i zatim je sam šalje iz svoje e-mail aplikacije. Forma ne tvrdi da je poruka poslata i ne čuva podatke na serveru. Za direktno slanje iz sajta potrebno je povezati servis za slanje pošte.
@@ -71,13 +73,15 @@ Novo mobilno Lighthouse merenje stranice O nama: performanse 96/100, pristupačn
 
 Provera 02.10.2026, posle novog cenovnika: produkcijski build uspešan, 22 + 57 provera uspešne na produkcijskom pregledu, bez prelivanja na širinama 320–1440 px.
 
+Provera 03.10.2026, posle završne premium vizuelne dorade: produkcijski build uspešan, 24 + 57 provera uspešne na produkcijskom pregledu. Novi izbor obuke radi mišem i tastaturom, bez prelivanja na širinama 320–1440 px. Vizuelno pregledane sve stranice na desktopu i telefonu. Lokalno mobilno Lighthouse merenje početne sa širokom uvodnom fotografijom: performanse 91/100, pristupačnost 100/100, LCP 3,2 s, CLS 0, TBT 60 ms. Izveštaj: `artifacts/lighthouse-premium-wide-mobile.json`.
+
 ## Sadržaj i vizuelni pravac
 
-Svetla tema je izričit zahtev i ostaje svetla nezavisno od podešavanja sistema. Boje: pozadina `#fbfaf8`, svetla površina `#f4f1ec`, tekst `#1c1a18`, narandžasta `#e85d10`. Sitan narandžasti tekst koristi tamniju `#c2410c` (`--accent-text`) zbog kontrasta, a narandžasta dugmad imaju taman tekst. Fotografski paneli imaju radius 16px, kontrole zaobljene uglove, glavna dugmad su ovalna. Header je sloj 20, skip link 30, loader 40, a dijalog koristi nativni top layer.
+Svetla tema je izričit zahtev i ostaje svetla nezavisno od podešavanja sistema. Boje: pozadina `#faf9f6`, svetla površina `#eeefe7`, tekst `#30342f`, narandžasta brenda `#e85d10`. Sitan narandžasti tekst koristi tamniju `#ad420d` (`--accent-text`) zbog kontrasta. Glavna dugmad imaju tamnu površinu i svetao tekst, dok je dugme u headeru sa tankim okvirom. Fotografski paneli imaju radius 6px, glavne kontrole 4px, a pomoćna dugmad sa ikonicom ostaju okrugla. Header je sloj 20, skip link 30, loader 40, a dijalog koristi nativni top layer.
 
 Kontakt i radno vreme preuzeti su sa [zvanične kontakt stranice FNS](https://autoskolafns.com/kontakt/). Ponuda A i B kategorije i iskustvo instruktora potvrđeni su na [zvaničnom sajtu](https://autoskolafns.com/) i [stranici usluga](https://autoskolafns.com/usluge/), provereno 30.09.2026. Procenat prolaznosti i recenzije nisu izmišljeni niti dodavani. Raspored cenovnika, cene, broj časova, uslovi, plaćanje na rate, oprema za motocikliste i česta pitanja preuzeti su 02.10.2026, na zahtev, sa [cenovnika auto škole Falkon Plus 2023](https://falkonplus2023kg.com/cenovnik) (Kragujevac). FNS ih još nije potvrdio; pre objave ih treba uporediti sa ponudom škole.
 
-Za nove stranice podaci za kontakt, kategorije i iskustvo instruktora ponovo su provereni 01.10.2026. Javni iznosi cena nisu pronađeni. Sačuvani su svetla tema, Manrope, postojeći fotografski materijal, rečnik obraćanja i sidra na početnoj stranici. Nove stranice koriste iste tokene i animacije; `src/pages.css` sadrži njihove prilagodljive rasporede.
+Za nove stranice podaci za kontakt, kategorije i iskustvo instruktora ponovo su provereni 01.10.2026. Javni iznosi cena nisu pronađeni. Sačuvani su svetla tema, postojeći fotografski materijal, rečnik obraćanja i sidra na početnoj stranici. `src/pages.css` sadrži rasporede dodatnih stranica; `src/premium.css` objedinjuje novu tipografiju, kompoziciju, kontrole i prilagodljivi prikaz na svim stranicama. Font se učitava lokalno, sa latin i latin-ext podskupovima i preloadingom na sva četiri HTML ulaza.
 
 Originalni logo je `logo.png` (crno-beli, providna pozadina) i ostaje nepromenjen. Njegovi beli delovi ne bi se videli na svetloj pozadini, pa verzija za sajt, `public/brand/fns-logo.webp`, zadržava crne delove kao tamne, a bele boji narandžasto. Za ponovno pravljenje loga, favicona i iOS ikonice pokrenuti `node scripts/prepare-logo.mjs`. Sve postojeće slike sačuvane su.
 
