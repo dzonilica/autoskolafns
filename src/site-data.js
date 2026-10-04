@@ -18,7 +18,7 @@ const pkg = (label, theory, driving) => ({ label, theory, driving });
 export const priceCategories = {
   B: {
     name: 'Putnička i teretna vozila',
-    description: 'Kategorija B obuhvata **putnička i teretna vozila čija najveća dozvoljena masa ne prelazi 3.500 kg** i koja pored vozačevog sedišta imaju najviše 8 sedišta (ukupno 9). Najtraženija je i najuniverzalnija kategorija — auto za svakodnevnu vožnju, posao i porodicu. Kandidat ima pravo da **upiše B kategoriju sa 16 godina**, ali za polaganje praktičnog dela ispita mora imati **navršenih 17 godina**. Puni obim obuke bez prethodne dozvole je **40 časova teorije + polaganje testa + 40 časova praktične vožnje + polaganje vožnje**.',
+    description: 'Kategorija B obuhvata **putnička i teretna vozila čija najveća dozvoljena masa ne prelazi 3.500 kg** i koja pored vozačevog sedišta imaju najviše 8 sedišta (ukupno 9). Kandidat ima pravo da **upiše B kategoriju sa 16 godina**, ali za polaganje praktičnog dela ispita mora imati **navršenih 17 godina**. Puni obim obuke bez prethodne dozvole je **40 časova teorije + polaganje testa + 40 časova praktične vožnje + polaganje vožnje**.',
     ages: [16, 17],
     limit: ['Vozilo', 'do 3.500 kg'],
     packages: [pkg('Bez vozačke dozvole', 40, 40), pkg('Poseduje AM ili A1', 7, 35), pkg('Poseduje A2 ili A', 7, 30), pkg('Poseduje B1', 0, 30), pkg('Poseduje M', 25, 40), pkg('Poseduje F', 20, 20)],
@@ -27,12 +27,12 @@ export const priceCategories = {
       'Za **maloletne kandidate** (od 16 god.) — saglasnost i potpis roditelja/staratelja na ugovoru.',
       '**Lekarsko uverenje** je neophodno pre početka časova vožnje (teorija se može slušati i test polagati bez uverenja).',
       'Sa **AM ili A1**: 7č teorije + 35č vožnje. Sa **A2 ili A**: 7č teorije + 30č vožnje. Sa **B1**: bez teorije + 30č vožnje.',
-      'Nakon položenog praktičnog ispita, škola sprema **dokumentaciju za probnu vozačku dozvolu**.',
+      'Nakon položenog praktičnog ispita, škola daje informacije o **dokumentaciji za probnu vozačku dozvolu**.',
     ],
   },
   A1: {
     name: 'Lakši motocikli',
-    description: 'Kategorija A1 obuhvata **lakše motocikle čija radna zapremina motora nije veća od 125 cm³ i snage motora do 11 kW**, kao i teške tricikle čija snaga motora ne prelazi 15 kW. Ovo je idealna prva motociklistička kategorija — može se upisati već sa **15 godina**, a polagati sa **16 godina**. Puni obim obuke bez prethodne dozvole: **40 časova teorije + test + 20 časova vožnje + polaganje vožnje**. Sa AM kategorijom teorija nije potrebna — samo 7 časova vožnje.',
+    description: 'Kategorija A1 obuhvata **lakše motocikle čija radna zapremina motora nije veća od 125 cm³ i snage motora do 11 kW**, kao i teške tricikle čija snaga motora ne prelazi 15 kW. Upis je moguć sa **15 godina**, a polaganje praktičnog ispita sa **16 godina**. Puni obim obuke bez prethodne dozvole: **40 časova teorije + test + 20 časova vožnje + polaganje vožnje**. Sa AM kategorijom teorija nije potrebna — 7 časova praktične obuke.',
     ages: [15, 16],
     limit: ['Motor', 'do 125 cm³ / 11 kW'],
     packages: [pkg('Bez vozačke dozvole', 40, 20), pkg('Poseduje AM', 0, 7), pkg('Poseduje B', 7, 20)],
@@ -41,12 +41,12 @@ export const priceCategories = {
       'Za **maloletne kandidate** — saglasnost i potpis roditelja/staratelja na ugovoru.',
       '**Lekarsko uverenje** pre početka praktične obuke (za teoriju i test nije potrebno).',
       'Sa **B kategorijom**: 7č teorije + 20č vožnje. Sa **AM**: bez teorije + 7č vožnje.',
-      'Škola obezbeđuje **opremu**: kacigu, potkapu, rukavice i bluetooth komunikaciju sa instruktorom.',
+      'Za praktičnu obuku motociklista koriste se **kaciga i zaštitna oprema**. Dostupnost opreme i način komunikacije sa instruktorom proverite prilikom upisa.',
     ],
   },
   A2: {
     name: 'Srednji motocikli',
-    description: 'Kategorija A2 obuhvata **motocikle čija snaga motora nije veća od 35 kW** i odnos snaga/masa do **0,2 kW/kg**. Kandidat se može upisati sa **17 godina**, a za polaganje praktičnog dela ispita potrebno je **navršenih 18 godina**. Puni obim obuke bez prethodne dozvole: **40 časova teorije + polaganje testa + 30 časova praktične obuke + polaganje vožnje**. Logičan sledeći korak ka A kategoriji bez dugog čekanja između dozvola.',
+    description: 'Kategorija A2 obuhvata **motocikle čija snaga motora nije veća od 35 kW** i odnos snaga/masa do **0,2 kW/kg**. Kandidat se može upisati sa **17 godina**, a za polaganje praktičnog dela ispita potrebno je **navršenih 18 godina**. Puni obim obuke bez prethodne dozvole: **40 časova teorije + polaganje testa + 30 časova praktične obuke + polaganje vožnje**.',
     ages: [17, 18],
     limit: ['Snaga', 'do 35 kW'],
     packages: [pkg('Bez vozačke dozvole', 40, 30), pkg('Poseduje AM', 0, 14), pkg('Poseduje A1', 0, 7), pkg('Poseduje B', 7, 30)],
@@ -55,22 +55,22 @@ export const priceCategories = {
       '**Lekarsko uverenje** je neophodno za početak časova vožnje. Teorijsku nastavu i test kandidat može slušati/polagati i bez uverenja.',
       'Sa **B kategorijom**: 7č teorije + 30č vožnje.',
       'Sa **A1**: bez teorije + 7č vožnje. Sa **AM**: bez teorije + 14č vožnje.',
-      'Škola obezbeđuje **zaštitnu opremu**: kacigu, potkapu, rukavice i bluetooth komunikaciju sa instruktorom.',
-      'Nakon položenog praktičnog ispita, spremamo **svu neophodnu dokumentaciju za vađenje vozačke dozvole**.',
+      'Za praktičnu obuku motociklista koriste se **kaciga i zaštitna oprema**. Dostupnost opreme i način komunikacije sa instruktorom proverite prilikom upisa.',
+      'Nakon položenog praktičnog ispita, škola daje informacije o **dokumentaciji za izdavanje vozačke dozvole**.',
     ],
   },
   A: {
     name: 'Svi motocikli — bez ograničenja',
-    description: 'Kategorija A obuhvata **sve motocikle i teške tricikle čija snaga motora prelazi 15 kW** — bez ograničenja zapremine ili snage. Za direktan pristup A kategoriji potrebno je **navršenih 24 godine** (upis od 23. godine). Ako kandidat već ima A2 minimum 2 godine, može direktno na A. Puni obim bez prethodne dozvole: **40 časova teorije + test + 40 časova vožnje + polaganje**. Najjača kategorija za prave ljubitelje motora.',
+    description: 'Kategorija A obuhvata **sve motocikle i teške tricikle čija snaga motora prelazi 15 kW** — bez ograničenja zapremine ili snage. Za direktan pristup A kategoriji potrebno je **navršenih 24 godine** (upis od 23. godine). Ako kandidat već ima A2 najmanje 2 godine, može direktno na A. Puni obim bez prethodne dozvole: **40 časova teorije + test + 40 časova vožnje + polaganje**.',
     ages: [23, 24],
     limit: ['Snaga', 'bez ograničenja'],
     packages: [pkg('Bez vozačke dozvole', 40, 40), pkg('Poseduje AM', 0, 20), pkg('Poseduje A1', 0, 14), pkg('Poseduje A2', 0, 7), pkg('Poseduje B', 7, 40)],
     conditions: [
       '**Lična karta** pri upisu i polaganju + **lekarsko uverenje** pre početka praktične obuke.',
       'Sa **B kategorijom**: 7č teorije + 40č vožnje.',
-      'Sa **A2**: bez teorije + samo 7č vožnje. Sa **A1**: 14č vožnje. Sa **AM**: 20č vožnje.',
-      'Škola obezbeđuje **opremu**: kacigu, potkapu, rukavice i bluetooth komunikaciju sa instruktorom.',
-      'Nakon položenog vozačkog dela ispita spremamo **svu dokumentaciju za vađenje vozačke dozvole**.',
+      'Sa **A2**: bez teorije + 7č vožnje. Sa **A1**: 14č vožnje. Sa **AM**: 20č vožnje.',
+      'Za praktičnu obuku motociklista koriste se **kaciga i zaštitna oprema**. Dostupnost opreme i način komunikacije sa instruktorom proverite prilikom upisa.',
+      'Nakon položenog praktičnog ispita, škola daje informacije o **dokumentaciji za izdavanje vozačke dozvole**.',
     ],
   },
 };
@@ -82,7 +82,7 @@ export function initialCategory() {
   return categoryKeys.includes(key) ? key : 'B';
 }
 
-// Package chosen with "Upiši se" on the price list, from /kontakt/?kategorija=B&paket=1.
+// Package chosen with "Upit za upis" on the price list, from /kontakt/?kategorija=B&paket=1.
 export function chosenPackage() {
   const params = new URLSearchParams(window.location.search);
   const index = Number(params.get('paket') ?? NaN);

@@ -34,6 +34,7 @@ Na [vercel.com/new](https://vercel.com/new) uvesti GitHub repozitorijum `dzonili
 - Cenovnik: jedinične cene (čas teorije, čas vožnje, polaganje), izbor B/A1/A2/A kategorije mišem ili tastaturom, paketi prema dozvoli koju kandidat već ima, uslovi i dokumenti po kategoriji, plaćanje, postupak obuke i česta pitanja. Dugme „Upiši se“ prenosi kategoriju i paket u kontakt formu. Jedinične cene su u `src/site-data.js` (`unitPrices`, u RSD); svi iznosi paketa računaju se iz njih i broja časova u `priceCategories`.
 - Kontakt: telefon, e-mail, adresa, radno vreme i forma. Mapa se učitava tek nakon klika na „Prikaži mapu“; direktan Google Maps link je uvek dostupan. Link `/kontakt/?kategorija=A&paket=4#upit` bira A kategoriju, u poruku upisuje izabrani paket sa cenom i fokusira ime.
 - Logo škole u headeru i footeru, kao favicon i ikonica za iOS početni ekran.
+- Profesionalan, konkretan tekst na svim stranicama, sa opisnim naslovima i posebnim SEO naslovima i meta opisima. Pravila tona i izvori podataka su u [dokumentaciji sadržaja](docs/content-style.md).
 - Uvodna kompozicija sa širokom fotografijom automobila i jasnom tipografskom hijerarhijom. Sekcija predstavljanja spaja tekst sa asimetričnom galerijom; na telefonu se prikazuje u jednoj koloni. Navigacija ima diskretno zamućenje uz punu pozadinu kada korisnik traži smanjenu providnost.
 - Uvodni loader sa logom pri prvom otvaranju sajta u sesiji pregledača. Ostale stranice iz iste sesije otvaraju se bez njega; za ponovni prikaz otvoriti sajt u novom tabu. Loader se ubacuje u sve HTML stranice preko `vite.config.js` iz `src/loader/` i prikazuje se pre učitavanja aplikacije. Animacije sekcija kreću kada se loader podigne, a uz `prefers-reduced-motion` loader samo kratko nestaje.
 - Navigacija na desktopu i mobilni meni sa zatvaranjem na Escape.
@@ -74,6 +75,8 @@ Novo mobilno Lighthouse merenje stranice O nama: performanse 96/100, pristupačn
 Provera 02.10.2026, posle novog cenovnika: produkcijski build uspešan, 22 + 57 provera uspešne na produkcijskom pregledu, bez prelivanja na širinama 320–1440 px.
 
 Provera 03.10.2026, posle završne premium vizuelne dorade: produkcijski build uspešan, 24 + 57 provera uspešne na produkcijskom pregledu. Novi izbor obuke radi mišem i tastaturom, bez prelivanja na širinama 320–1440 px. Vizuelno pregledane sve stranice na desktopu i telefonu. Lokalno mobilno Lighthouse merenje početne sa širokom uvodnom fotografijom: performanse 91/100, pristupačnost 100/100, LCP 3,2 s, CLS 0, TBT 60 ms. Izveštaj: `artifacts/lighthouse-premium-wide-mobile.json`.
+
+Provera 04.10.2026, posle prerade teksta: produkcijski build uspešan, 24 + 57 provera uspešne na lokalnom razvojnom serveru. Dodatno provereni jedinstveni SEO naslovi i meta opisi, jedan H1 po stranici, podudaranje Open Graph podataka i prikaz svih stranica na širinama 320/390/768/1024/1440 px. Pregled sadržaja i snimci su u `artifacts/content-review.json` i `artifacts/copy-*-desktop.png`, odnosno `artifacts/copy-*-mobile.png`.
 
 ## Sadržaj i vizuelni pravac
 

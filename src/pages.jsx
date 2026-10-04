@@ -7,22 +7,22 @@ export function AboutPage() {
   return <>
     <Breadcrumb current="O nama" />
     <section className="about-page-hero container" aria-labelledby="about-page-title">
-      <Reveal className="page-hero-copy"><p className="eyebrow">O NAMA</p><h1 id="about-page-title">Znanje ostaje.<br /><span>Sigurnost raste.</span></h1><p>U FNS-u učimo za stvarne puteve, uz strpljenje, jasna objašnjenja i podršku na svakom času.</p><a href="/kontakt/#upit" className="button">Započni obuku <ArrowUpRight size={20} /></a></Reveal>
+      <Reveal className="page-hero-copy"><p className="eyebrow">O NAMA</p><h1 id="about-page-title">O auto školi FNS<br /><span>u Novom Sadu</span></h1><p>Auto škola FNS pruža teorijsku i praktičnu obuku za A i B kategoriju. Nastava obuhvata saobraćajne propise, časove vožnje i pripremu za vozački ispit.</p><a href="/kontakt/#upit" className="button">Informacije o upisu <ArrowUpRight size={20} /></a></Reveal>
       <Reveal className="about-page-visual" delay={0.1}><ParallaxImage name="prostor" alt="Učionica auto škole FNS sa računarima za teorijsku nastavu" priority sizes="(max-width: 767px) 100vw, 50vw" /></Reveal>
     </section>
     <section className="school-story container section-space" aria-labelledby="story-title">
       <Reveal className="school-experience"><span>15<span>+</span></span><p>godina iskustva<br />naših instruktora</p></Reveal>
-      <Reveal className="school-story-copy"><h2 id="story-title">Dobar instruktor.<br />Velika razlika.</h2><p>Prvi susret sa vožnjom donosi mnogo pitanja. Tu smo da objasnimo, ponovimo i pomognemo ti da svaki sledeći čas dočekaš sa više sigurnosti.</p><p>Naš tim licenciranih instruktora vodi obuku za A i B kategoriju u Novom Sadu. Spajamo teoriju sa praktičnim situacijama, uz pristup prilagođen svakom kandidatu.</p><a className="text-link" href="/cenovnik/">Pogledaj cenovnik <ArrowUpRight size={20} /></a></Reveal>
+      <Reveal className="school-story-copy"><h2 id="story-title">Licencirani<br />instruktori vožnje</h2><p>Instruktori imaju više od 15 godina iskustva u obuci kandidata. Tokom časova objašnjavaju postupke upravljanja vozilom i primenu saobraćajnih propisa.</p><p>Obuka se prilagođava prethodnom znanju kandidata. Posebna pažnja posvećuje se kontroli vozila, proceni saobraćajnih situacija i pripremi za polaganje ispita.</p><a className="text-link" href="/cenovnik/">Cenovnik vozačke obuke <ArrowUpRight size={20} /></a></Reveal>
     </section>
     <section className="approach-section section-space" aria-labelledby="approach-title"><div className="container approach-grid">
       <Reveal className="approach-photo"><ParallaxImage name="cas-voznje" alt="Ilustracija praktičnog časa vožnje sa instruktorom" position="42% center" /></Reveal>
-      <div><Reveal><h2 id="approach-title">Tvoj tempo.<br />Naša podrška.</h2></Reveal><div className="approach-list">{[
-        [UserFocus, 'Slobodno pitaj.', 'Jasna objašnjenja i prostor za svako pitanje, od prvih pravila do složenijih saobraćajnih situacija.'],
-        [SteeringWheel, 'Uči kroz vožnju.', 'Znanje sa teorijske nastave primenjuješ na poligonu i gradskim ulicama, uz podršku instruktora.'],
-        [ShieldCheck, 'Gradi dobre navike.', 'Pažnja, procena i odgovornost deo su svakog časa. Cilj je sigurnost i kada počneš da voziš samostalno.'],
+      <div><Reveal><h2 id="approach-title">Sadržaj<br />vozačke obuke</h2></Reveal><div className="approach-list">{[
+        [UserFocus, 'Saobraćajni propisi', 'Pravila prvenstva prolaza, saobraćajni znakovi i bezbedno ponašanje učesnika u saobraćaju.'],
+        [SteeringWheel, 'Upravljanje vozilom', 'Vežbe na poligonu i vožnja u saobraćaju, uz objašnjenja i nadzor instruktora.'],
+        [ShieldCheck, 'Priprema za ispit', 'Primena teorijskog znanja, pravilno izvođenje radnji vozilom i priprema za praktični vozački ispit.'],
       ].map(([Icon, title, text], i) => <Reveal className="approach-item" key={title} delay={i * 0.06}><Icon size={27} weight="light" /><div><h3>{title}</h3><p>{text}</p></div></Reveal>)}</div></div>
     </div></section>
-    <section className="school-space container section-space" aria-labelledby="space-title"><Reveal><h2 id="space-title">Od učionice do ulice.</h2><p>Teorija daje osnovu. Praksa je pretvara u znanje koje koristiš svakog dana.</p></Reveal><div className="school-gallery"><figure><ParallaxImage name="prostor" alt="Računari za teorijsku nastavu u auto školi FNS" /><figcaption>Prostor za učenje i pripremu.</figcaption></figure><figure><ParallaxImage name="poligon" alt="Ilustracija automobila za obuku na poligonu" /><figcaption>Mesto za prve sigurne pokrete.</figcaption></figure></div></section>
+    <section className="school-space container section-space" aria-labelledby="space-title"><Reveal><h2 id="space-title">Teorijska nastava i praktična obuka</h2><p>Teorijska nastava održava se u učionici. Praktični časovi obuhvataju vežbe na poligonu i vožnju u saobraćaju.</p></Reveal><div className="school-gallery"><figure><ParallaxImage name="prostor" alt="Računari za teorijsku nastavu u auto školi FNS" /><figcaption>Učionica za teorijsku nastavu.</figcaption></figure><figure><ParallaxImage name="poligon" alt="Ilustracija automobila za obuku na poligonu" /><figcaption>Vežbe vožnje na poligonu.</figcaption></figure></div></section>
     <PageCTA />
   </>;
 }
@@ -31,28 +31,28 @@ const price = value => `${formatPrice(value)} din`;
 const rich = text => text.split('**').map((part, i) => i % 2 ? <strong key={i}>{part}</strong> : part);
 
 const processSteps = [
-  ['Upis', 'Lična karta i potpis ugovora. Za maloletnike — saglasnost roditelja.'],
-  ['Teorija', `7–40 časova u učionici, u zavisnosti od trenutne dozvole. ${price(unitPrices.theory)} / čas.`],
-  ['Teorijski ispit', 'Zvanični test u školi. Položen test važi 18 meseci za nastavak obuke.'],
-  ['Lekarsko uverenje', 'Neophodno pre početka vožnje. Uverenje važi 1 godinu.'],
-  ['Vožnja', `7–40 časova sa instruktorom u realnom saobraćaju. ${price(unitPrices.driving)} / čas.`],
-  ['Praktični ispit', 'Vožnja pred ispitivačem. Nakon polaganja spremamo dokumentaciju za probnu dozvolu.'],
+  ['Upis', 'Provera dokumentacije i potpisivanje ugovora o obuci. Za maloletne kandidate potrebna je saglasnost roditelja ili staratelja.'],
+  ['Teorija', `Broj časova zavisi od kategorije i postojeće vozačke dozvole. ${price(unitPrices.theory)} / čas.`],
+  ['Teorijski ispit', 'Polaganje teorijskog ispita nakon završene teorijske nastave.'],
+  ['Lekarsko uverenje', 'Lekarsko uverenje potrebno je pre početka praktične obuke.'],
+  ['Vožnja', `Časovi sa instruktorom na poligonu i u saobraćaju. ${price(unitPrices.driving)} / čas.`],
+  ['Praktični ispit', 'Polaganje praktičnog ispita nakon završene praktične obuke.'],
 ];
 
 const processFacts = [
-  ['Trajanje', '2–3 meseca', 'Prosečno trajanje kompletne obuke za B kategoriju. Teorija 2–3 nedelje, vožnja oko 2 meseca — u zavisnosti od tvog rasporeda.'],
-  ['Rokovi', '18 meseci', 'Rok važenja teorijskog ispita — u tom periodu se mora položiti praktični, u suprotnom se teorija polaže ponovo.'],
-  ['Termini', 'Fleksibilno', 'Časovi se planiraju prema tvom rasporedu — pre ili posle posla, vikendom. Radimo pon–pet 09–17, sub 09–14.'],
+  ['Trajanje', 'Prema rasporedu', 'Trajanje obuke zavisi od broja časova, rasporeda nastave i dostupnih termina ispita.'],
+  ['Obim obuke', 'Po kategoriji', 'Broj teorijskih i praktičnih časova zavisi od izabrane kategorije i vozačke dozvole koju kandidat već poseduje.'],
+  ['Termini', 'Po dogovoru', 'Raspored časova dogovara se sa školom, prema dostupnosti instruktora i kandidata. Informacije o početku obuke dostupne su u kancelariji.'],
 ];
 
 const priceQuestions = [
-  ['Koliko traje obuka za B kategoriju?', 'Kompletna obuka za B kategoriju traje prosečno 2–3 meseca. Teorija (40č) oko 2–3 nedelje, vožnja (40č) oko 2 meseca, zavisno od tvog rasporeda.'],
-  ['Da li mogu da platim na rate?', 'Da. Plaćanje je moguće gotovinom u više rata, čekovima, administrativnom zabranom ili bankarskim kreditom. Bez kamate i bez skrivenih troškova.'],
-  ['Šta je potrebno za upis?', 'Za punoletne — važeća lična karta. Za maloletnike (od 16 god.) — lična karta i potpis jednog roditelja/staratelja na ugovor. Lekarsko uverenje je potrebno pre praktične obuke.'],
-  ['Koliko važi položeni teorijski ispit?', '18 meseci. Ako u tom roku ne položiš praktični deo, teorijski ispit se mora ponovo polagati.'],
-  ['Kako se računa cena obuke?', <>Cena je transparentna i jednaka za sve kategorije: <strong>{formatPrice(unitPrices.theory)} dinara po času teorije</strong>, <strong>{formatPrice(unitPrices.driving)} dinara po času vožnje</strong> i <strong>{formatPrice(unitPrices.exam)} dinara jednokratno za polaganje</strong> (teorijski + praktični ispit). Ako već imaš neku kategoriju, broj časova je manji — pa je i cena niža. Svi paketi su prikazani iznad.</>],
-  ['Da li mogu da odustanem tokom obuke?', <>Naravno. Plaća se samo ono što je do tog trenutka odslušano i odvoženo. Bez penala i bez dodatnih troškova. Za detalje pogledaj ugovor ili nas <a href="/kontakt/">kontaktiraj</a>.</>],
-  ['Gde mogu da vežbam testove?', <>Zvanični testovi za polaganje teorijskog dela ispita dostupni su putem portala eUprave. <a href="https://servisi.euprava.gov.rs/autoskole/prijava" target="_blank" rel="noreferrer">Prijavi se na eUpravu <ArrowUpRight size={14} /></a></>],
+  ['Koliko traje obuka za B kategoriju?', 'Trajanje zavisi od potrebnog broja časova, rasporeda nastave i termina ispita. Paket za kandidata bez vozačke dozvole uključuje 40 časova teorije i 40 časova vožnje. Za procenu trajanja i početak obuke kontaktirajte školu.'],
+  ['Da li mogu da platim na rate?', 'Za mogućnost plaćanja na rate, broj uplata i prihvaćene načine plaćanja kontaktirajte školu. Uslovi plaćanja utvrđuju se ugovorom o obuci.'],
+  ['Šta je potrebno za upis?', 'Važeća lična karta i ugovor o obuci. Za maloletne kandidate potrebna je saglasnost roditelja ili staratelja. Lekarsko uverenje dostavlja se pre praktične obuke. Uzrast za upis zavisi od kategorije.'],
+  ['Koliko važi položeni teorijski ispit?', 'Položen teorijski ispit važi 18 meseci. Praktični ispit mora se položiti u tom roku; nakon isteka roka teorijski ispit polaže se ponovo.'],
+  ['Kako se računa cena obuke?', <>Ukupan iznos paketa računa se prema broju časova i prikazanim jediničnim cenama: <strong>{formatPrice(unitPrices.theory)} dinara po času teorije</strong>, <strong>{formatPrice(unitPrices.driving)} dinara po času vožnje</strong> i <strong>{formatPrice(unitPrices.exam)} dinara za polaganje</strong> (teorijski + praktični ispit). Broj časova zavisi od izabrane kategorije i prethodne vozačke dozvole. Pregled paketa prikazan je iznad.</>],
+  ['Da li mogu da odustanem tokom obuke?', <>Uslovi prekida obuke i obračun održanih časova uređeni su ugovorom. Za informacije o konkretnom slučaju <a href="/kontakt/">kontaktirajte školu</a>.</>],
+  ['Gde mogu da vežbam testove?', <>Zvanični testovi za polaganje teorijskog dela ispita dostupni su putem portala eUprave. <a href="https://servisi.euprava.gov.rs/autoskole/prijava" target="_blank" rel="noreferrer">Prijava na eUpravu <ArrowUpRight size={14} /></a></>],
 ];
 
 function PackageCard({ category, item, index }) {
@@ -64,7 +64,7 @@ function PackageCard({ category, item, index }) {
       <div><dt>Polaganje <span>(T + V)</span></dt><dd>{price(unitPrices.exam)}</dd></div>
       <div className="package-total"><dt>Ukupno</dt><dd>{price(packageTotal(item))}</dd></div>
     </dl>
-    <a className="button button-dark" href={`/kontakt/?kategorija=${category}&paket=${index}#upit`} aria-label={`Upiši se: ${category} kategorija, ${item.label}`}>Upiši se <ArrowRight size={17} /></a>
+    <a className="button button-dark" href={`/kontakt/?kategorija=${category}&paket=${index}#upit`} aria-label={`Upit za upis: ${category} kategorija, ${item.label}`}>Upit za upis <ArrowRight size={17} /></a>
   </article>;
 }
 
@@ -75,21 +75,21 @@ export function PricingPage() {
   return <>
     <Breadcrumb current="Cenovnik" />
     <section className="pricing-hero container" aria-labelledby="pricing-title">
-      <Reveal className="page-hero-copy"><p className="eyebrow">CENOVNIK</p><h1 id="pricing-title">Koji paket<br /><span>tebi odgovara?</span></h1></Reveal>
-      <Reveal className="pricing-intro" delay={0.1}><p>Tačna cena obuke zavisi od tvoje trenutne dozvole i odabrane kategorije. Svi paketi rade po istim jediničnim cenama — <strong>{price(unitPrices.theory)}</strong> čas teorije, <strong>{price(unitPrices.driving)}</strong> čas vožnje i <strong>{price(unitPrices.exam)}</strong> polaganje (teorijski + praktični ispit).</p><p>Ispod imaš razrađen paket za svaki slučaj.</p></Reveal>
+      <Reveal className="page-hero-copy"><p className="eyebrow">CENOVNIK</p><h1 id="pricing-title">Cenovnik<br /><span>vozačke obuke</span></h1></Reveal>
+      <Reveal className="pricing-intro" delay={0.1}><p>Cene obuke za B, A1, A2 i A kategoriju zavise od potrebnog broja časova i postojeće vozačke dozvole. Prikazane jedinične cene su: <strong>{price(unitPrices.theory)}</strong> čas teorije, <strong>{price(unitPrices.driving)}</strong> čas vožnje i <strong>{price(unitPrices.exam)}</strong> polaganje (teorijski + praktični ispit).</p><p>Izaberite kategoriju za pregled paketa, broja časova i ukupnog iznosa.</p></Reveal>
     </section>
     <section className="unit-prices container" aria-labelledby="unit-title"><Reveal className="unit-card">
-      <div className="unit-head"><span className="unit-icon" aria-hidden="true"><Coins size={22} weight="bold" /></span><div><h2 id="unit-title">Jedinične cene obuke</h2><p>Iste za sve kategorije — ukupna cena zavisi samo od broja časova.</p></div></div>
+      <div className="unit-head"><span className="unit-icon" aria-hidden="true"><Coins size={22} weight="bold" /></span><div><h2 id="unit-title">Jedinične cene obuke</h2><p>Ukupan iznos paketa dobija se iz broja časova teorije i vožnje i cene polaganja.</p></div></div>
       <dl className="unit-grid">
         <div><dt>Čas teorije</dt><dd><strong>{formatPrice(unitPrices.theory)}</strong> din / čas</dd></div>
         <div><dt>Čas vožnje</dt><dd><strong>{formatPrice(unitPrices.driving)}</strong> din / čas</dd></div>
         <div><dt>Polaganje (T + V)</dt><dd><strong>{formatPrice(unitPrices.exam)}</strong> din, jednokratno</dd></div>
       </dl>
-      <p className="unit-formula"><strong>Kako se računa:</strong> ukupna cena = (broj časova teorije × {formatPrice(unitPrices.theory)}) + (broj časova vožnje × {formatPrice(unitPrices.driving)}) + {price(unitPrices.exam)} polaganje. Ako već imaš neku kategoriju, propisani broj časova je manji — pa je i cena niža.</p>
+      <p className="unit-formula"><strong>Kako se računa:</strong> ukupna cena = (broj časova teorije × {formatPrice(unitPrices.theory)}) + (broj časova vožnje × {formatPrice(unitPrices.driving)}) + {price(unitPrices.exam)} polaganje. Broj časova zavisi od izabrane kategorije i prethodne vozačke dozvole.</p>
     </Reveal></section>
     <section id="paketi" className="packages container" aria-labelledby="packages-title">
       <h2 id="packages-title" className="sr-only">Paketi obuke za {category} kategoriju</h2>
-      <fieldset className="category-tabs"><legend className="sr-only">Izaberi kategoriju</legend>{categoryKeys.map(key => <label key={key} className={category === key ? 'selected' : ''}><input type="radio" name="price-category" value={key} checked={category === key} onChange={() => setCategory(key)} aria-label={`${key} kategorija`} aria-controls="paketi-lista kategorija-detalji" /><span aria-hidden="true">{key}</span></label>)}</fieldset>
+      <fieldset className="category-tabs"><legend className="sr-only">Izaberite kategoriju</legend>{categoryKeys.map(key => <label key={key} className={category === key ? 'selected' : ''}><input type="radio" name="price-category" value={key} checked={category === key} onChange={() => setCategory(key)} aria-label={`${key} kategorija`} aria-controls="paketi-lista kategorija-detalji" /><span aria-hidden="true">{key}</span></label>)}</fieldset>
       <div id="paketi-lista"><Reveal key={category} className="package-grid">{data.packages.map((item, index) => <PackageCard key={item.label} category={category} item={item} index={index} />)}</Reveal></div>
     </section>
     <section id="kategorija-detalji" className="category-detail container" aria-labelledby="category-detail-title"><div className="category-detail-inner">
@@ -109,21 +109,21 @@ export function PricingPage() {
       <div className="category-conditions"><h3>Uslovi i dokumenti</h3><ul>{data.conditions.map(text => <li key={text}><CheckCircle size={20} weight="fill" aria-hidden="true" /><span>{rich(text)}</span></li>)}</ul></div>
     </div></section>
     <section className="pricing-terms container" aria-label="Plaćanje i napomene"><ul>
-      <li><CreditCard size={24} weight="light" aria-hidden="true" /><p><strong>Plaćanje na rate — bez kamate:</strong> Gotovinom, čekovima građana, administrativnom zabranom ili bankarskim kreditom. Broj rata biraju kandidati.</p></li>
-      <li><SealCheck size={24} weight="light" aria-hidden="true" /><p><strong>Bez skrivenih troškova:</strong> Cena iz cenovnika je konačna — teorija + vožnja + polaganje. Šta dogovorimo, to i platiš.</p></li>
-      <li><Info size={24} weight="light" aria-hidden="true" /><p><strong>Napomena:</strong> Za direktan pristup A kategoriji potrebno je min. 24 godine starosti. Cene važe od 2026. i mogu se dogovoriti u više rata. <a href="/kontakt/#upit">Pitaj za detalje</a></p></li>
+      <li><CreditCard size={24} weight="light" aria-hidden="true" /><p><strong>Plaćanje obuke:</strong> Način plaćanja i dinamika uplata utvrđuju se prilikom upisa, prema ugovoru o obuci.</p></li>
+      <li><SealCheck size={24} weight="light" aria-hidden="true" /><p><strong>Sadržaj paketa:</strong> Prikazani su iznosi teorijske nastave, časova vožnje i polaganja. Pre upisa proverite sadržaj izabranog paketa i uslove ugovora.</p></li>
+      <li><Info size={24} weight="light" aria-hidden="true" /><p><strong>Uslovi upisa:</strong> Zavise od uzrasta, izabrane kategorije i postojeće vozačke dozvole. <a href="/kontakt/#upit">Informacije o upisu</a></p></li>
     </ul></section>
     <section className="process container section-space" aria-labelledby="process-title">
-      <Reveal className="section-heading"><p className="eyebrow">POSTUPAK OBUKE</p><h2 id="process-title">Kako obuka teče.</h2><p>Isti proces važi za sve kategorije. Trajanje se razlikuje samo po broju časova.</p></Reveal>
+      <Reveal className="section-heading"><p className="eyebrow">POSTUPAK OBUKE</p><h2 id="process-title">Postupak vozačke obuke</h2><p>Faze teorijske i praktične obuke. Potreban broj časova i uslovi polaganja zavise od kategorije i postojeće dozvole.</p></Reveal>
       <ol className="steps process-steps">{processSteps.map(([title, text], i) => <li key={title}><Reveal delay={(i % 3) * 0.08}><div className="step-top"><span>0{i + 1}</span>{i < processSteps.length - 1 ? <ArrowRight size={23} weight="light" /> : <Check size={23} weight="light" />}</div><h3>{title}</h3><p>{text}</p></Reveal></li>)}</ol>
       <div className="process-facts">{processFacts.map(([label, value, text], i) => <Reveal key={label} className="process-fact" delay={i * 0.06}><p className="process-fact-label">{label}</p><strong>{value}</strong><p>{text}</p></Reveal>)}</div>
     </section>
-    <section className="faq container pricing-faq" aria-labelledby="pricing-faq-title"><Reveal className="faq-heading"><p className="eyebrow">PITANJA I ODGOVORI</p><h2 id="pricing-faq-title">Česta<br />pitanja.</h2><p>Nekoliko korisnih odgovora pre prvog razgovora.</p></Reveal><div className="faq-list">{priceQuestions.map(([q, a]) => <details name="pricing-faq" key={q}><summary>{q}<Plus size={21} weight="light" /></summary><p>{a}</p></details>)}</div></section>
+    <section className="faq container pricing-faq" aria-labelledby="pricing-faq-title"><Reveal className="faq-heading"><p className="eyebrow">PITANJA I ODGOVORI</p><h2 id="pricing-faq-title">Pitanja o cenama<br /> i uslovima obuke</h2><p>Obim obuke, plaćanje, dokumentacija i vozački ispit.</p></Reveal><div className="faq-list">{priceQuestions.map(([q, a]) => <details name="pricing-faq" key={q}><summary>{q}<Plus size={21} weight="light" /></summary><p>{a}</p></details>)}</div></section>
     <PageCTA />
   </>;
 }
 
 export function ContactLocation() {
   const [showMap, setShowMap] = useState(false);
-  return <section className="location-section container section-space" aria-labelledby="location-title"><div className="location-copy"><h2 id="location-title">Svrati da<br />se upoznamo.</h2><p>Čekamo te u Kosovskoj 30 u Novom Sadu. Dođi sa pitanjima o obuci, upisu ili terminima.</p><a className="text-link" href={mapUrl} target="_blank" rel="noreferrer">Otvori putanju u Google Maps <ArrowUpRight size={19} /></a><div className="visit-note"><h3>Pre dolaska</h3><p>Ako želiš razgovor o određenoj kategoriji, pozovi nas da proverimo termin koji ti odgovara.</p></div></div><div className="location-map">{showMap ? <iframe title="Lokacija auto škole FNS, Kosovska 30, Novi Sad" src="https://www.google.com/maps?q=Auto+skola+FNS+Kosovska+30+Novi+Sad&output=embed" loading="lazy" referrerPolicy="no-referrer" allowFullScreen /> : <><MapPin size={44} weight="light" /><h3>Kosovska 30</h3><p>Novi Sad, Srbija</p><button className="button" onClick={() => setShowMap(true)}>Prikaži mapu <ArrowUpRight size={18} /></button><small>Učitava Google Maps.</small></>}</div></section>;
+  return <section className="location-section container section-space" aria-labelledby="location-title"><div className="location-copy"><h2 id="location-title">Adresa<br />i lokacija škole</h2><p>Auto škola FNS nalazi se na adresi Kosovska 30, Novi Sad. U kancelariji su dostupne informacije o upisu, kategorijama i rasporedu obuke.</p><a className="text-link" href={mapUrl} target="_blank" rel="noreferrer">Lokacija u Google Maps <ArrowUpRight size={19} /></a><div className="visit-note"><h3>Pre dolaska</h3><p>Za informacije o određenoj kategoriji i raspoloživim terminima obuke pozovite 069 164 6590 pre dolaska.</p></div></div><div className="location-map">{showMap ? <iframe title="Lokacija auto škole FNS, Kosovska 30, Novi Sad" src="https://www.google.com/maps?q=Auto+skola+FNS+Kosovska+30+Novi+Sad&output=embed" loading="lazy" referrerPolicy="no-referrer" allowFullScreen /> : <><MapPin size={44} weight="light" /><h3>Kosovska 30</h3><p>Novi Sad, Srbija</p><button className="button" onClick={() => setShowMap(true)}>Prikažite mapu <ArrowUpRight size={18} /></button><small>Učitava Google Maps.</small></>}</div></section>;
 }

@@ -38,14 +38,14 @@ try {
   await page.keyboard.press('Escape');
   check('Escape closes dialog', !await page.getByRole('dialog').isVisible());
   await page.getByRole('button', { name: 'Detalji A kategorije', exact: true }).click();
-  await page.getByRole('button', { name: 'Zanima me A kategorija', exact: true }).click();
+  await page.getByRole('button', { name: 'Upit za A kategoriju', exact: true }).click();
   check('Category selection reaches contact form', await page.locator('input[value="A"]').isChecked());
   check('Contact name receives focus', await page.locator('input[name="name"]').evaluate(el => el === document.activeElement));
   await page.locator('input[name="name"]').fill('Provera FNS sajta');
   await page.locator('input[name="email"]').fill('provera@example.com');
   await page.locator('textarea').fill('Provera pripreme upita, bez slanja.');
-  await page.getByRole('button', { name: 'Pripremi upit' }).click();
-  const mailto = await page.getByRole('link', { name: 'Otvori e-mail aplikaciju', exact: true }).getAttribute('href');
+  await page.getByRole('button', { name: 'Pripremite upit' }).click();
+  const mailto = await page.getByRole('link', { name: 'Otvorite e-mail aplikaciju', exact: true }).getAttribute('href');
   check('Email draft uses correct recipient and category', mailto.startsWith('mailto:autoskolafns@gmail.com?') && decodeURIComponent(mailto).includes('A kategoriju'));
   await page.locator('input[name="name"]').fill('Provera izmenjenog upita');
   check('Editing invalidates the prepared draft', await page.getByRole('status').count() === 0);

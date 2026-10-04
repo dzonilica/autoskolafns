@@ -29,5 +29,5 @@ export function Breadcrumb({ current }) {
 }
 
 export function PageCTA() {
-  return <section className="page-cta container" aria-labelledby="next-step-title"><Reveal className="page-cta-inner"><div><h2 id="next-step-title">Tvoj prvi korak?<br /><span>Da se upoznamo.</span></h2><p>Javi nam se za sve što želiš da znaš pre upisa.</p></div><a className="button" href="/kontakt/#upit">Započni obuku <ArrowUpRight size={20} /></a></Reveal></section>;
+  return <section className="page-cta container" aria-labelledby="next-step-title"><Reveal className="page-cta-inner"><div><h2 id="next-step-title">Informacije o upisu<br /><span>i početku obuke</span></h2><p>Kontaktirajte auto školu za uslove upisa, potrebnu dokumentaciju i dostupne termine.</p></div><a className="button" href="/kontakt/#upit">Kontaktirajte nas <ArrowUpRight size={20} /></a></Reveal></section>;
 }
